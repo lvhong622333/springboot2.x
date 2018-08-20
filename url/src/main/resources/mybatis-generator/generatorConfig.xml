@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="mybatis3" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection
+			connectionURL="jdbc:mysql://106.14.179.140/urlinfo?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true"
+			driverClass="com.mysql.jdbc.Driver" password="root" userId="root" />
+		<javaModelGenerator targetPackage="com.lvhong.web.pojo" targetProject="url/src/main/java" >
+			<property name="enableSubPackages" value="true" />
+    			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="mapper" targetProject="url/src/main/resources" >
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<javaClientGenerator targetPackage="com.lvhong.web.mapper" targetProject="url/src/main/java" type="XMLMAPPER" >
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<table tableName="tm_sys_user" schema="general" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<!-- 如需不使用驼峰命名法改变生成对象的属性名放开下面参数 -->
+    			<!-- <property name="useActualColumnNames" value="true"/> -->
+		</table>
+	</context>
+</generatorConfiguration>

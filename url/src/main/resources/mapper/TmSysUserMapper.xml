@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lvhong.web.mapper.TmSysUserMapper">
+  <resultMap id="BaseResultMap" type="com.lvhong.web.pojo.TmSysUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="isvalid" jdbcType="CHAR" property="isvalid" />
+    <result column="row_num" jdbcType="CHAR" property="rowNum" />
+    <result column="tele_phone" jdbcType="VARCHAR" property="telePhone" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="birth_day" jdbcType="DATE" property="birthDay" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, real_name, user_name, password, create_time, isvalid, row_num, tele_phone, sex, 
+    birth_day
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tm_sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lvhong.web.pojo.TmSysUser">
+    insert into tm_sys_user (id, real_name, user_name, 
+      password, create_time, isvalid, 
+      row_num, tele_phone, sex, birth_day
+      )
+    values (#{id,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{isvalid,jdbcType=CHAR}, 
+      #{rowNum,jdbcType=CHAR}, #{telePhone,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birthDay,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lvhong.web.pojo.TmSysUser">
+    insert into tm_sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="rowNum != null">
+        row_num,
+      </if>
+      <if test="telePhone != null">
+        tele_phone,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthDay != null">
+        birth_day,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=CHAR},
+      </if>
+      <if test="rowNum != null">
+        #{rowNum,jdbcType=CHAR},
+      </if>
+      <if test="telePhone != null">
+        #{telePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthDay != null">
+        #{birthDay,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lvhong.web.pojo.TmSysUser">
+    update tm_sys_user
+    <set>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=CHAR},
+      </if>
+      <if test="rowNum != null">
+        row_num = #{rowNum,jdbcType=CHAR},
+      </if>
+      <if test="telePhone != null">
+        tele_phone = #{telePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthDay != null">
+        birth_day = #{birthDay,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lvhong.web.pojo.TmSysUser">
+    update tm_sys_user
+    set real_name = #{realName,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      isvalid = #{isvalid,jdbcType=CHAR},
+      row_num = #{rowNum,jdbcType=CHAR},
+      tele_phone = #{telePhone,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birth_day = #{birthDay,jdbcType=DATE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryUserInfo" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from tm_sys_user
+  </select>
+  <select id="queryUserInfoByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from tm_sys_user where user_name = #{userName}
+  </select>
+</mapper>
