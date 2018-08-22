@@ -1,7 +1,6 @@
 package com.lvhong.web.mapper;
 
 import java.util.List;
-
 import com.lvhong.web.pojo.TmSysUser;
 
 public interface TmSysUserMapper {
