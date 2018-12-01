@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lvhong.web.mapper.TmUrlInfoMapper">
+  <resultMap id="BaseResultMap" type="com.lvhong.web.pojo.TmUrlInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="url_name" jdbcType="VARCHAR" property="urlName" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="url_type" jdbcType="VARCHAR" property="urlType" />
+    <result column="url_desc" jdbcType="VARCHAR" property="urlDesc" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="isvalid" jdbcType="CHAR" property="isvalid" />
+    <result column="row_num" jdbcType="VARCHAR" property="rowNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, url_name, url, url_type, url_desc, create_by, create_time, update_by, update_time, 
+    isvalid, row_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_url_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tm_url_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lvhong.web.pojo.TmUrlInfo">
+    insert into tm_url_info (id, url_name, url, 
+      url_type, url_desc, create_by, 
+      create_time, update_by, update_time, 
+      isvalid, row_num)
+    values (#{id,jdbcType=BIGINT}, #{urlName,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{urlType,jdbcType=VARCHAR}, #{urlDesc,jdbcType=VARCHAR}, #{createBy,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isvalid,jdbcType=CHAR}, #{rowNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lvhong.web.pojo.TmUrlInfo">
+    insert into tm_url_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        id,
+      <if test="urlName != null">
+        url_name,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="urlType != null">
+        url_type,
+      </if>
+      <if test="urlDesc != null">
+        url_desc,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="rowNum != null">
+        row_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+       (select nextval('url_info_id')),
+      <if test="urlName != null">
+        #{urlName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="urlType != null">
+        #{urlType,jdbcType=VARCHAR},
+      </if>
+      <if test="urlDesc != null">
+        #{urlDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=CHAR},
+      </if>
+      <if test="rowNum != null">
+        #{rowNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lvhong.web.pojo.TmUrlInfo">
+    update tm_url_info
+    <set>
+      <if test="urlName != null">
+        url_name = #{urlName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="urlType != null">
+        url_type = #{urlType,jdbcType=VARCHAR},
+      </if>
+      <if test="urlDesc != null">
+        url_desc = #{urlDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=CHAR},
+      </if>
+      <if test="rowNum != null">
+        row_num = #{rowNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lvhong.web.pojo.TmUrlInfo">
+    update tm_url_info
+    set url_name = #{urlName,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      url_type = #{urlType,jdbcType=VARCHAR},
+      url_desc = #{urlDesc,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      isvalid = #{isvalid,jdbcType=CHAR},
+      row_num = #{rowNum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="queryUrlInfoCondition">
+  	<trim prefix="WHERE" prefixOverrides="AND|OR">
+  		<if test="searchText != null and searchText != ''">
+  			url_desc like concat('%',#{searchText},'%') OR url like concat('%',#{searchText},'%') OR url_type like concat('%',#{searchText},'%') OR url_name like concat('%',#{searchText},'%')
+  		</if>
+  	</trim>
+  	<if test="sortName == 'urlType'">
+  		order by url_type
+  	</if>
+  	<if test="sortName == 'urlName'">
+  		order by url_name
+  	</if>
+  	<if test="sortName == 'url'">
+  		order by url
+  	</if>
+  	<if test="sortName == 'urlDesc'">
+  		order by url_desc
+  	</if>
+  	<if test="sortName != null and sortName != '' ">  	
+	  	<if test="sortOrder == 'desc'">
+	  		desc
+	  	</if>
+	  	<if test="sortOrder == 'asc'">
+	  		asc
+	  	</if>
+  	</if>
+  </sql>
+  <select id="queryUrlInfo" resultMap="BaseResultMap" parameterType="com.lvhong.web.pojo.UrlInfoSearch">
+  	select <include refid="Base_Column_List" /> from tm_url_info <include refid="queryUrlInfoCondition"/> limit #{pageNo},#{limit}
+  </select>
+  <select id="queryUrlInfoCount" resultType="java.lang.Integer" parameterType="com.lvhong.web.pojo.UrlInfoSearch">
+  	select count(*)  from tm_url_info <include refid="queryUrlInfoCondition"/>
+  </select>
+  <delete id="deleteBatchByPrimaryKey">
+  	delete from tm_url_info where id in 
+  	<foreach collection="array" item="param" index="index" open="(" close=")" separator=",">
+  		#{param}
+  	</foreach>
+  </delete>
+  <select id="queryImportUrlInfo" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from tm_url_info
+  </select>
+</mapper>

@@ -1,6 +1,5 @@
 package com.lvhong.web.controller;
 
-import java.io.UnsupportedEncodingException;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.apache.shiro.SecurityUtils;
@@ -30,7 +29,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/urlInfo/login")
-	public String login(String userName ,String password,Model model,HttpSession session) throws UnsupportedEncodingException {
+	public String login(String userName ,String password,Model model,HttpSession session) {
 		if(StringUtils.isEmpty(userName)) {
 			model.addAttribute("userNameError", environmentUtils.getMessage("userNameError"));
             return "/pages/login";

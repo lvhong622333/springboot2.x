@@ -22,6 +22,7 @@ img {
 		$("#urlSearch").removeClass("active");
 		$("#urlInput").removeClass("active");
 		$("#urlTypeInput").removeClass("active");
+		$("#urlMail").removeClass("active");
 	});
 </script>
 </head>

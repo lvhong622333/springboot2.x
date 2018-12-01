@@ -9,4 +9,6 @@
 		onclick="window.location.href='${pageContext.request.contextPath}/urlInfo/page/urlInput'">网址录入</a></li>
 	<li id="urlTypeInput"><a href="#"
 		onclick="window.location.href='${pageContext.request.contextPath}/urlInfo/page/urlTypeInput'">数据字典</a></li>
+	<li id="urlMail"><a href="#"
+		onclick="window.location.href='${pageContext.request.contextPath}/urlInfo/page/mailSend'">邮件</a></li>
 </ul>

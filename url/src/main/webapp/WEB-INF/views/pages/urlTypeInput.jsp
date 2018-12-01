@@ -15,6 +15,7 @@
 		$("#urlInput").removeClass("active");
 		$("#urlSearch").removeClass("active");
 		$("#urlTypeInput").addClass("active");
+		$("#urlMail").removeClass("active");
 		setTableInfo();
 	});
 

@@ -1,6 +1,5 @@
 package com.lvhong.web.util;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.annotation.Resource;
@@ -14,13 +13,12 @@ public class EnvironmentUtils {
 	@Resource
 	private Environment env;
 	
-	public  String getMessage(String key) throws UnsupportedEncodingException {
+	public  String getMessage(String key)  {
 		Locale locale = Locale.getDefault();
 		String[] activeProfiles = env.getActiveProfiles();
 		for (String proName : activeProfiles) {
 			if(proName.indexOf(locale.getLanguage()) != -1) {				
 				ResourceBundle bundle = ResourceBundle.getBundle(proName, locale);
-				//String value = new String(bundle.getString(key).getBytes("ISO8859-1"),"UTF-8");
 				String value = bundle.getString(key);
 				if(!StringUtils.isNullOrEmpty(value)) {
 					return value;

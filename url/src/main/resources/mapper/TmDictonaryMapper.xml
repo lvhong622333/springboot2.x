@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lvhong.web.mapper.TmDictonaryMapper">
+  <resultMap id="BaseResultMap" type="com.lvhong.web.pojo.TmDictonary">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dict_value" jdbcType="VARCHAR" property="dictValue" />
+    <result column="dict_name" jdbcType="VARCHAR" property="dictName" />
+    <result column="dict_desc" jdbcType="VARCHAR" property="dictDesc" />
+    <result column="dict_type" jdbcType="VARCHAR" property="dictType" />
+    <result column="isvalid" jdbcType="CHAR" property="isvalid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dict_value, dict_name, dict_desc, dict_type, isvalid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_dictonary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tm_dictonary
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.lvhong.web.pojo.TmDictonary">
+    insert into tm_dictonary (id, dict_value, dict_name, 
+      dict_desc, dict_type, isvalid
+      )
+    values (#{id,jdbcType=INTEGER}, #{dictValue,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, 
+      #{dictDesc,jdbcType=VARCHAR}, #{dictType,jdbcType=VARCHAR}, #{isvalid,jdbcType=CHAR}
+      )
+  </insert>
+  <select id="querySequenceId" resultType="java.lang.Long">
+  	 select nextval('url_info_id')
+  </select>
+  <insert id="insertSelective" parameterType="com.lvhong.web.pojo.TmDictonary">
+    insert into tm_dictonary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">     
+      	id,
+      </if>
+      <if test="dictValue != null">
+        dict_value,
+      </if>
+      <if test="dictName != null">
+        dict_name,
+      </if>
+      <if test="dictDesc != null">
+        dict_desc,
+      </if>
+      <if test="dictType != null">
+        dict_type,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+      	#{id},
+      </if>
+      <if test="dictValue != null">
+        #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictDesc != null">
+        #{dictDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null">
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lvhong.web.pojo.TmDictonary">
+    update tm_dictonary
+    <set>
+      <if test="dictValue != null">
+        dict_value = #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictDesc != null">
+        dict_desc = #{dictDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null">
+        dict_type = #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lvhong.web.pojo.TmDictonary">
+    update tm_dictonary
+    set dict_value = #{dictValue,jdbcType=VARCHAR},
+      dict_name = #{dictName,jdbcType=VARCHAR},
+      dict_desc = #{dictDesc,jdbcType=VARCHAR},
+      dict_type = #{dictType,jdbcType=VARCHAR},
+      isvalid = #{isvalid,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="querySelectorsInfo" resultMap="BaseResultMap">
+  	select dict_value,dict_name from tm_dictonary where dict_type = 1 and isvalid = 1
+  </select>
+  <sql id="urlTypeSearchWhere">
+  	<trim prefix="where" prefixOverrides="AND||OR">  	
+  		isvalid = 1
+  		<if test="searchText != null and searchText != ''">
+  			and (dict_value like concat('%',#{searchText},'%') or dict_name like concat('%',#{searchText},'%'))
+  		</if>
+  	</trim>
+	<if test="sortName == 'dictValue'">
+		order by dict_value
+	</if>
+	<if test="sortName == 'dictName'">
+		order by dict_name
+	</if>
+	<if test="sortName != null and sortName != ''">
+		<if test="sortOrder == 'desc'">
+			desc
+		</if>
+		<if test="sortOrder == 'asc'">
+			asc
+		</if>
+	</if>
+  </sql>
+  <select id="urlTypeSearchCount" resultType="java.lang.Integer" parameterType="com.lvhong.web.pojo.TmDictonarySearch">
+  		select count(*) from tm_dictonary <include refid="urlTypeSearchWhere"></include>
+  </select>
+  <select id="urlTypeSearch" resultMap="BaseResultMap" parameterType="com.lvhong.web.pojo.TmDictonarySearch">
+  		select <include refid="Base_Column_List"></include> from tm_dictonary <include refid="urlTypeSearchWhere"></include> limit #{pageNo},#{limit}
+  </select>
+  <update id="deleteDictInfo" >
+  	update tm_dictonary set isvalid = 0 where id in
+  	<foreach collection="array" item="param" index="index" open="(" close=")" separator=",">
+  		#{param}
+  	</foreach>
+  </update>
+  <select id="queryDictInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from tm_dictonary where id = #{businessKey}
+  </select>
+  <select id="queryFlowUrl" resultType="java.lang.String">
+  	select url_address from tm_flow_url where process_id = #{0} and task_name = #{1}
+  </select>
+  <update id="updateIsvalid" parameterType="java.lang.Long">
+  	update tm_dictonary set isvalid = 1 where id = #{dictId}
+  </update>
+  <select id="queryImportDictInfo" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"></include> from tm_dictonary  where isvalid = 1
+  </select>
+</mapper>

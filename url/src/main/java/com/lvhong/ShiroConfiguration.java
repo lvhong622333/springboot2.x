@@ -58,6 +58,7 @@ public class ShiroConfiguration {
         map.put("/login","anon");
         map.put("/urlInfo/login", "anon");
         map.put("/static/**", "anon");
+        map.put("/urlInfo/register", "anon");
         map.put("/**","authc");
         //登录
         shiroFilterFactoryBean.setLoginUrl("/login");

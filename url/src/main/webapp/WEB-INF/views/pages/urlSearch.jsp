@@ -15,6 +15,7 @@
 		$("#urlInput").removeClass("active");
 		$("#urlSearch").addClass("active");
 		$("#urlTypeInput").removeClass("active");
+		$("#urlMail").removeClass("active");
 	})
 	function importUrlInfo(){
 		window.location.href="${pageContext.request.contextPath}/urlInfo/importUrlInfo";

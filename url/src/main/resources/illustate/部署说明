@@ -1,0 +1,24 @@
+本项目是以springboot2.0.4框架为基础搭建！项目前端渲染引擎是以jsp为基础！这边由于jsp的缘故，避免项目以jar的形式部署运行！
+以war的形式部署运行到指定服务器中！
+打包部署时需要改动一下两处：
+1、修改运行主类SpringBootApp.java
+	@SpringBootApplication
+	@MapperScan("com.lvhong.web.mapper")
+	public class SpringBootApp /*extends SpringBootServletInitializer*/{
+	
+		/**
+		 * 用于以war包的形式部署项目配置
+		 * @param args
+		 */
+		/*@Override
+	    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	        return application.sources(SpringBootApp.class);
+	    }*/
+		
+		public static void main(String[] args) {
+			SpringApplication.run(SpringBootApp.class, args);
+		}
+		
+	}
+2、修改pom.xml文件
+	将jar改为war

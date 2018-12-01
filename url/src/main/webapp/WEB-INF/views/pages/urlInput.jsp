@@ -14,6 +14,7 @@
 		$("#urlSearch").removeClass("active");
 		$("#urlInput").addClass("active");
 		$("#urlTypeInput").removeClass("active");
+		$("#urlMail").removeClass("active");
 		$(".selectpicker").selectpicker({
 			width : 605,
 			actionsBox : true, // 在下拉选项添加选中所有和取消选中的按钮

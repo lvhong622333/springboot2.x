@@ -3,6 +3,7 @@ package com.lvhong.web.service.impl;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
 import com.lvhong.web.service.JedisService;
@@ -10,6 +11,7 @@ import redis.clients.jedis.GeoRadiusResponse;
 import redis.clients.jedis.JedisCluster;
 
 @Service
+@Lazy
 public class JedisServiceImpl implements JedisService {
 
 

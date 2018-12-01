@@ -13,8 +13,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan("com.lvhong.web.mapper")
-public class SpringBootApp {
+public class SpringBootApp /*extends SpringBootServletInitializer*/{
 
+	/**
+	 * 用于以war包的形式部署项目配置
+	 * @param args
+	 */
+	/*@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(SpringBootApp.class);
+    }*/
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootApp.class, args);
 	}
