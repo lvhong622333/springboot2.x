@@ -1,6 +1,14 @@
 package com.lvhong.web.pojo;
 
-public class UrlInfoSearch {
+import java.io.Serializable;
+
+public class UrlInfoSearch implements Serializable{
+	
+	/**
+	 * 序列化
+	 */
+	private static final long serialVersionUID = 337106390954369212L;
+	
 	private Integer limit; //每页显示数量
 	private Integer pageNo; //当前页码
 	private String searchText; //搜索文本

@@ -1,9 +1,17 @@
 package com.lvhong.web.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TmUrlInfo {
-    private Long id;
+public class TmUrlInfo implements Serializable{
+	
+	
+    /**
+	 * 序列化
+	 */
+	private static final long serialVersionUID = -8708460236450828073L;
+
+	private Long id;
 
     private String urlName;
 

@@ -3,9 +3,10 @@ package com.lvhong.web.util;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import com.mysql.jdbc.StringUtils;
 
 @Component
 public class EnvironmentUtils {
@@ -20,7 +21,7 @@ public class EnvironmentUtils {
 			if(proName.indexOf(locale.getLanguage()) != -1) {				
 				ResourceBundle bundle = ResourceBundle.getBundle(proName, locale);
 				String value = bundle.getString(key);
-				if(!StringUtils.isNullOrEmpty(value)) {
+				if(!StringUtils.isNotBlank(value)) {
 					return value;
 				}
 			}

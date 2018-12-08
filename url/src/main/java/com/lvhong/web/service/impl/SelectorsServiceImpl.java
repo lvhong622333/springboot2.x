@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import com.lvhong.web.mapper.TmDictonaryMapper;
 import com.lvhong.web.pojo.PageList;
@@ -26,12 +28,14 @@ public class SelectorsServiceImpl implements SelectorsService {
 	
 	@Cacheable(value="sysCache",key="#root.methodName + ':' + #dictDate")
 	@Override
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<TmDictonary> querySelectorsInfo(Date dictDate) {
 		List<TmDictonary> querySelectorsInfo = tmDictonaryMappper.querySelectorsInfo();
 		return querySelectorsInfo;
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public PageList<TmDictonary> urlTypeSearch(TmDictonarySearch search) {
 		search.setPageNo(search.getLimit()*(search.getPageNo() - 1));
 		PageList<TmDictonary> page = new PageList<TmDictonary>();
@@ -43,14 +47,14 @@ public class SelectorsServiceImpl implements SelectorsService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(isolation=Isolation.REPEATABLE_READ,propagation=Propagation.REQUIRED)
 	public void deleteDictInfo(String dictInfos) {
 		String[] infos = dictInfos.split(",");
 		tmDictonaryMappper.deleteDictInfo(infos);
 	}
 
 	@Override
-	@Transactional
+	@Transactional(isolation=Isolation.REPEATABLE_READ,propagation=Propagation.REQUIRED)
 	public void addDictInfo(TmDictonary tmDictonary) {
 		//获取序列值作为主键
 		Long id = tmDictonaryMappper.querySequenceId();
@@ -60,23 +64,25 @@ public class SelectorsServiceImpl implements SelectorsService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(isolation=Isolation.REPEATABLE_READ,propagation=Propagation.REQUIRED)
 	public void updateDictInfo(TmDictonary tmDictonary) {
 		tmDictonaryMappper.updateByPrimaryKeySelective(tmDictonary);
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public TmDictonary queryDictInfo(String businessKey) {
 		return tmDictonaryMappper.queryDictInfo(businessKey);
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public String queryFlowUrl(String processDefinitionKey, String taskDefinitionKey) {
 		return tmDictonaryMappper.queryFlowUrl(processDefinitionKey,taskDefinitionKey);
 	}
 
 	@Override
-	@Transactional
+	@Transactional(isolation=Isolation.REPEATABLE_READ,propagation=Propagation.REQUIRED)
 	public void agencyAdminapprove(String taskId, String approveAdvice, String processInstanceId, Boolean flags,
 			Long dictId) {
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -88,7 +94,7 @@ public class SelectorsServiceImpl implements SelectorsService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(isolation=Isolation.REPEATABLE_READ,propagation=Propagation.REQUIRED)
 	public void agencyApply(String taskId, String approveAdvice, String processInstanceId, Boolean flags,
 			TmDictonary tmDictionary) {
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -104,6 +110,7 @@ public class SelectorsServiceImpl implements SelectorsService {
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<TmDictonary> queryImportDictInfo() {
 		List<TmDictonary> querySelectorsInfo = tmDictonaryMappper.queryImportDictInfo();
 		return querySelectorsInfo;

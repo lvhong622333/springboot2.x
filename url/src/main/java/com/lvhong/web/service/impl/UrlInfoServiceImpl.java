@@ -36,6 +36,7 @@ public class UrlInfoServiceImpl implements UrlInfoService {
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<TmUrlInfo> queryImportUrlInfo() {
 		return tmUrlInfoMapper.queryImportUrlInfo();
 	}

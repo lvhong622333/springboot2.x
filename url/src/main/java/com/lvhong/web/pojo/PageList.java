@@ -1,8 +1,14 @@
 package com.lvhong.web.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PageList<T>{
+public class PageList<T> implements Serializable{
+	
+	/**
+	 * 序列化
+	 */
+	private static final long serialVersionUID = -786707852343430043L;
 	
 	private Integer total; //总记录数
 	private List<T> rows; //每页显示的数据

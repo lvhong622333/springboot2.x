@@ -1,0 +1,7 @@
+实现pringboot2.x项目多数据源配置
+	1、application.properties中增加数据源配置参数
+	2、编写数据源配置类
+		这边我只配置了主数据源，配置类样式如：
+		   MasterDataSourceConfiguration.java
+多个数据源区分只需在配置的时候区分其dao文件夹或者叫mapper文件夹
+为了区分不同数据访问路径，这边对每个数据源新建一个包，用于存放当前数据源的mapper接口

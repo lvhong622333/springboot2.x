@@ -1,0 +1,18 @@
+ehcache是纯java开发，apache开源的内存型缓存框架
+储存方式支持内存和磁盘
+适用场景：缓存数据量不是很大，非分布式场景，需要高速访问
+优点：
+   依赖少，项目体积小，配置简单，高速缓存访问
+缺点：
+   分布式系统的使用烦，性能不高
+由于其特点，被受诸多开源框架的喜爱和使用，如hibernate中的缓存框架
+springboot2.x中的整合和使用说明：
+  1、引入jar依赖
+  	<dependency>
+		<groupId>net.sf.ehcache</groupId>
+		<artifactId>ehcache</artifactId>
+	</dependency>
+  2、引入ehcache的配置文件ehcache.xml
+  3、整合ehcache到springboot项目中，具体实现参考下类：EhcacheConfiguration.java
+  4、在需要使用ehcache缓存的方法上使用如下注解，实现内容缓存到内存中
+  	@Cacheable、@CacheEvict、@Cacheput

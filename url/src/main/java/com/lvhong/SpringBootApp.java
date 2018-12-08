@@ -1,8 +1,9 @@
 package com.lvhong;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
  * 
@@ -12,17 +13,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @MapperScan 用于集成mybatis接口，生命周期交由spring管理
  */
 @SpringBootApplication
-@MapperScan("com.lvhong.web.mapper")
-public class SpringBootApp /*extends SpringBootServletInitializer*/{
+public class SpringBootApp extends SpringBootServletInitializer{
 
 	/**
 	 * 用于以war包的形式部署项目配置
 	 * @param args
 	 */
-	/*@Override
+	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(SpringBootApp.class);
-    }*/
+    }
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootApp.class, args);
